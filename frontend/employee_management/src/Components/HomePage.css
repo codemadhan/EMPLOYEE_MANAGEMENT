@@ -1,0 +1,163 @@
+body {
+  background-color: #222;
+  color: #eee;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px; /* Adjust the top margin */
+}
+
+
+button {
+  margin-bottom: 10px; /* Add some space below the button */
+}
+
+table {
+  width: 100%; /* Make the table cover the full width */
+  table-layout: fixed; /* Prevent the table from adjusting column width based on content */
+}
+
+th, td {
+  padding: 8px; /* Add padding to table cells */
+  text-align: left;
+}
+
+  tr:nth-child(even) {
+    background-color: #555;
+  }
+  
+  tr:hover {
+    background-color: #666;
+  }
+  
+  /* Button styling */
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Popup styling */
+  .task-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    width: 80%;
+    max-width: 600px;
+    color: #eee; /* Text color */
+    max-height: 80vh; /* Maximum height of the popup */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+  }
+  
+  .task-popup h2 {
+    color: #5ac95f; /* Header color */
+    margin-bottom: 10px;
+  }
+  
+  .task-card {
+    background-color: #444;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  
+  .task-card p {
+    margin: 0;
+    font-weight: bold;
+    color: #fff; /* Highlighted text color */
+  }
+  
+  .task-card input[type="number"] {
+    width: 100px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: #eee; /* Input text color */
+    margin-right: 10px;
+  }
+  
+  .task-card button {
+    padding: 8px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .task-card button:hover {
+    background-color: #45a049;
+  }
+  
+  .progress-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .progress-bar {
+    width: 80%;
+    margin-right: 10px;
+  }
+/* Webkit (Chrome, Safari, Opera) */
+
+/* Thin scrollbar */
+.task-popup::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+.task-popup::-webkit-scrollbar-track {
+  background: #333; /* Background color */
+}
+
+/* Handle */
+.task-popup::-webkit-scrollbar-thumb {
+  background: #555; /* Scrollbar color */
+  border-radius: 10px;
+}
+
+/* Firefox */
+.task-popup {
+  scrollbar-width: thin;
+  scrollbar-color: #555 #333; /* Scrollbar color */
+}
+  
+.table-container {
+  max-height: 640px; /* Adjust the height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+
+.table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+.table-container::-webkit-scrollbar-track {
+  background: #333; /* Background color */
+}
+
+/* Handle */
+.table-container::-webkit-scrollbar-thumb {
+  background: #555; /* Scrollbar color */
+  border-radius: 10px;
+}
+

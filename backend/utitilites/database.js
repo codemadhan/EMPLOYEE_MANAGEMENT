@@ -4,7 +4,7 @@ const pool = mysql.createPool({
     host: 'bnghwr2fr2qbtkftsph3-mysql.services.clever-cloud.com',
     user: 'um7nzzhwioxoj60p',
     database: 'bnghwr2fr2qbtkftsph3',
-    password: '1UPCdEjkYBTWnspuwRYY',       
+    password: '1UPCdEjkYBTWnspuwRYY',          
 }).promise(); 
 
 // Function to create tables if they do not exist
@@ -14,7 +14,7 @@ const createTables = async () => {
         await pool.query(`
             CREATE TABLE IF NOT EXISTS employee(
                 employee_name VARCHAR(30) NOT NULL,
-                employee_id BIGINT NOT NULL,
+                employee_id BIGINT PRIMARY KEY,
                 department VARCHAR(255) NOT NULL,
                 dob DATE NOT NULL,
                 gender VARCHAR(30) NOT NULL, 
@@ -26,6 +26,16 @@ const createTables = async () => {
                 email VARCHAR(255) NOT NULL,
                 phone_number BIGINT NOT NULL,
                 joining_date DATE NOT NULL
+            );
+        `);
+
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS tasks(
+                task_id INT AUTO_INCREMENT PRIMARY KEY,
+                employee_id BIGINT NOT NULL,
+                task TEXT NOT NULL,
+                task_completion INT NOT NULL,
+                progress INT NOT NULL
             );
         `);
 

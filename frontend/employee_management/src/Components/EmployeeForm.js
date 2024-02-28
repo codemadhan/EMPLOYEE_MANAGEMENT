@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; 
 import axios from 'axios';
 import './EmployeeForm.css';
 
@@ -28,11 +29,28 @@ const EmployeeForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Check if dob and joining_date are greater than today's date
-    const today = new Date().toISOString().slice(0, 10);
-    if (formData.dob > today || formData.joining_date > today) {
-      alert('INVALID Date of Birth or Joining Date');
-      return;
-    }
+    // Get today's date
+    const today = new Date();
+
+    // Calculate the minimum date of birth for someone to be 18 years old
+    const minDOB = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+
+    // Check if the date of birth is at least 18 years ago
+    const dob = new Date(formData.dob);
+    if (dob > minDOB) {
+    alert('Person must be at least 18 years old');
+    return;
+  }
+
+// Check if the joining date is not greater than today's date
+    const joiningDate = new Date(formData.joining_date);
+    if (joiningDate > today) {
+    alert('Invalid Joining date ');
+    return;
+}
+
+// Validation passed, continue with your logic
+
     try {
       await axios.post('http://localhost:8000/form/submit', formData);
       alert('Employee added successfully!');
@@ -88,8 +106,14 @@ const EmployeeForm = () => {
             <option value="IT">IT</option>
             <option value="HR">HR</option>
             <option value="Finance">Finance</option>
-            <option value="Finance">Logistics</option>
-            <option value="Finance">Designing</option>
+            <option value="Logistics">Logistics</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Operations">Operations</option>
+            <option value="Sales">Sales</option>
+            <option value="Research and Development">Research and Development</option>
+            <option value="Quality Assurance">Quality Assurance</option>
+            <option value="Production">Production</option>
+            <option value="Customer Support">Customer Support</option>
           </select>
         </div>
         <div className="form-group">
@@ -128,14 +152,18 @@ const EmployeeForm = () => {
           </div>
         </div>
         <div className="form-group">
-          <input
-            type="text"
+          <select
             name="designation"
             value={formData.designation}
             onChange={handleChange}
-            placeholder="Designation"
             required
-          />
+          >
+            <option value="">Select Designation</option>
+            <option value="Junior Engineer">Junior Engineer</option>
+            <option value="Senior Engineer">Senior Engineer</option>
+            <option value="Manager">Manager</option>
+            <option value="Intern">Intern</option>
+          </select>
         </div>
         <div className="form-group">
           <input
@@ -154,16 +182,24 @@ const EmployeeForm = () => {
 
         {currentStep === 2 && (
           <>
-            <div className="form-group">
-              <input
-                type="text"
-                name="blood_group"
-                value={formData.blood_group}
-                onChange={handleChange}
-                placeholder="Blood Group"
-                required
-              />
-            </div>
+          <div className="form-group">
+          <select
+            name="blood_group"
+            value={formData.blood_group}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Blood Group</option>
+            <option value="A +ve">A +ve</option>
+            <option value="A -ve">A -ve</option>
+            <option value="B +ve">B +ve</option>
+            <option value="B -ve">B -ve</option>
+            <option value="O +ve">O +ve</option>
+            <option value="O -ve">O -ve</option>
+            <option value="AB +ve">AB +ve</option>
+            <option value="AB -ve">AB -ve</option>
+          </select>
+        </div>
             <div className="form-group">
               <input
                 type="text"
@@ -248,6 +284,9 @@ const EmployeeForm = () => {
           </button>
         )}
       </form>
+      <Link to="/home">
+        <button>Go to Dashboard</button>
+      </Link>
     </div>
   );
 };
